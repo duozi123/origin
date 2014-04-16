@@ -1,4 +1,4 @@
-ÿþcommit 444e2d02d25efad65dec719257d93ff4c841276e
+commit 444e2d02d25efad65dec719257d93ff4c841276e
 Author: duozi123 <zx199107@gmail.com>
 Date:   Wed Apr 16 10:47:13 2014 +0800
 
