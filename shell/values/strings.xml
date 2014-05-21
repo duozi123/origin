@@ -1,7 +1,7 @@
 <resources>
 
     <string name="app_name">Robotium</string>
-    <string age="1">Robotium</string>
+    <string age="2">Robotium</string>
     <string sev="male">Robotium</string>
     <string job="worker">Robotium</string>
     <string email="123@qq.com">Robotium</string>
