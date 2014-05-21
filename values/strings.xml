@@ -1,0 +1,10 @@
+<resources>
+
+    <string name="app_name">Robotium</string>
+    <string age="35">Robotium</string>
+    <string sev="male">Robotium</string>
+    <string job="worker">Robotium</string>
+    <string email="123@qq.com">Robotium</string>
+    <string salary="5000">Robotium</string>
+
+</resources>
