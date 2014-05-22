@@ -1,10 +1,10 @@
 <resources>
 
-    <string name="Ð£³¤">Robotium</string>
-    <string age="50">Robotium</string>
+    <string name="ÁïÁï">Robotium</string>
+    <string age="10">Robotium</string>
     <string sev="male">Robotium</string>
     <string job="manger">Robotium</string>
-    <string email="123@qq.com">Robotium</string>
+    <string email="345@qq.com">Robotium</string>
     <string salary="9000">Robotium</string>
 
 </resources>
