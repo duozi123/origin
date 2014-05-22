@@ -25,12 +25,18 @@ def read_list(path):
 
 #find a exists word which is arounded with "" and change it in a needed one
 def change(path, list):
+    file_path = "d:\c\str_change.txt"
+    cf = open(file_path, 'w+')
     content = read_str(path)
     for i in list:
         p = re.compile(i[0])
         e = p.search(content)
         if e:
-            content = content.replace("\"" + i[0] + "\"", "\"" + i[1]+ "\"")
+            content = content.replace("\"" + i[0] + "\"", "\"" + i[1] + "\"")
+            try:
+                cf.write(i[0]+"------>"+i[1]+"\n")
+            finally:
+                cf.close()
     return content
 #deal with changes in string and get the content  in the file
 #delete words like "[-...-]" and delete "{+" "+}"
@@ -54,6 +60,7 @@ def get_word(s):
     index1=s.find('"')
     index2=s.rfind('"')
     word=(s[index1+1:index2])
+
     return word
 
 
@@ -65,15 +72,14 @@ def get_word(s):
 #main project
 def different(commit_before, commit_after):
     #certain file which have changed
-    filename = "D:/c/1.txt"
-    commit=[]
-    commits=[]
-    subprocess.Popen('git log --pretty=oneline %s > D:/c/commit.txt' % filename, shell=True)#commit for certion file between two commits
-    list_commit=read_list("D:/c/commit.txt")
+    filename = "D:/c/shell/res/values/strings.xml"
+    commit = []
+    commits = []
+    subprocess.Popen('git log --pretty=oneline %s > D:/c/commit.txt' % filename, shell=True)#commit for certaion file between two commits
+    list_commit = read_list("D:/c/commit.txt")
     for i in list_commit:
         j=i[:40]
         commit.append(j) #split it only leave commit id
-
 
 
     subprocess.Popen(r'git log %s..%s --pretty=format:"%%H " > D:/c/commits.txt' % (commit_before, commit_after), shell=True)#all commits between two commits
@@ -114,28 +120,47 @@ def different(commit_before, commit_after):
 
     subprocess.Popen('git show %s --word-diff --pretty=oneline %s > D:/c/second.txt'%(commit_second,filename),shell=True)
     str_after = read_str(r"D:/c/second.txt")
-    after_list=deal_str(str_after)
+    after_list = deal_str(str_after)
 
 # find the word pairs which have same words before and the word in ""is different
  #and put them in a list
-    str_list=[]
+    #file_path="d:\c\str_change.txt"
+    #f = open(file_path, 'w+')
+    
+    str_list = []
     for i in after_list:
+
         index = i.find('"')
         head = i[:index]
         for j in before_list:
             if head in j:
-                if i!=j:
-                    words=[get_word(j),get_word(i)]
+                if i != j:
+                    words = [get_word(j), get_word(i)]
+
                     str_list.append(words)
 
+                    
+    
+    
+
 #write the changed word in certain file back
-    file_path=r"d:\c\test.txt"#the test case file
-    content=change(filename, str_list)
+    file_path = r"d:\c\testcase\res\values\strings.xml"#the test case file
+
+    content = change(filename, str_list)
     f = open(file_path, 'w')
     try:
         f.write(content)
     finally:
         f.close()
+
+    
+
+
+    os.remove(r"D:\c\first.txt")
+    os.remove("D:\c\second.txt")
+    os.remove("D:\c\commit.txt")
+    os.remove("D:\c\commits.txt")
+
 
 
 
@@ -144,8 +169,7 @@ def different(commit_before, commit_after):
 # subprocess.Popen('cd c' , shell=True)
 # subprocess.Popen('git config --global user.name "duozi123"' , shell=True)
 # subprocess.Popen('git config --global user.email "zx199107@gmail.com"' , shell=True)
-# #
-different("39f01d8e8eab7622d068aafbca04dfd26836aac2","d2ae9ea234cb3d5f2587701be91daeedd709fd5a")
+different("e3eab0f00446de06697415117c9101e475dbc72d","6f519787fb4b10e6fbe9582e8365e034ec67d912")
 
 
 
